@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>REDFIT — всё бесплатно!</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Inter:opsz,wght@14..32,400;14..32,700;14..32,900&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #0a0a0a;
+      color: #fff;
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .header {
+      background: rgba(10, 10, 10, 0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 2px solid #E3000F;
+      padding: 14px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .header-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .logo {
+      font-family: 'Lobster', cursive;
+      font-size: 44px;
+      font-weight: 400;
+      color: #fff;
+      text-shadow: 0 0 20px rgba(227, 0, 15, 0.3);
+      letter-spacing: 2px;
+      line-height: 1;
+      display: flex;
+      align-items: center;
+    }
+    .logo span {
+      background: #E3000F;
+      color: #fff;
+      padding: 0 12px;
+      border-radius: 8px;
+      margin-left: 6px;
+      font-size: 40px;
+      box-shadow: 0 4px 0 #8a000a;
+    }
+    .logo small {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      background: #FFD700;
+      color: #0a0a0a;
+      padding: 2px 14px;
+      border-radius: 40px;
+      margin-left: 12px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      box-shadow: 0 2px 0 #b38f00;
+    }
+    .nav a {
+      color: #ccc;
+      text-decoration: none;
+      margin-left: 28px;
+      font-size: 16px;
+      font-weight: 700;
+      transition: 0.2s;
+      border-bottom: 3px solid transparent;
+      padding-bottom: 4px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .nav a:hover {
+      color: #fff;
+      border-bottom-color: #E3000F;
+    }
+    .hero {
+      padding: 100px 0 70px;
+      text-align: center;
+      background: radial-gradient(circle at 20% 30%, #1a1a1a, #0a0a0a);
+      border-bottom: 2px solid #E3000F;
+    }
+    .hero h1 {
+      font-family: 'Lobster', cursive;
+      font-size: 72px;
+      font-weight: 400;
+      color: #fff;
+      text-shadow: 0 0 40px rgba(227, 0, 15, 0.2);
+      margin-bottom: 8px;
+      letter-spacing: 2px;
+    }
+    .hero h1 .highlight {
+      background: #E3000F;
+      color: #fff;
+      padding: 0 20px;
+      border-radius: 12px;
+      display: inline-block;
+      box-shadow: 0 6px 0 #8a000a;
+    }
+    .hero p {
+      font-size: 24px;
+      max-width: 700px;
+      margin: 16px auto 30px;
+      font-weight: 500;
+      color: #ccc;
+    }
+    .hero .btn-group {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-block;
+      background: #E3000F;
+      color: #fff;
+      padding: 16px 44px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 20px;
+      border: none;
+      cursor: pointer;
+      transition: 0.25s;
+      box-shadow: 0 8px 24px rgba(227, 0, 15, 0.3);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-family: 'Inter', sans-serif;
+    }
+    .btn:hover {
+      transform: scale(1.04);
+      box-shadow: 0 12px 32px rgba(227, 0, 15, 0.5);
+      background: #ff1a2a;
+    }
+    .btn-outline {
+      background: transparent;
+      border: 2px solid #E3000F;
+      color: #fff;
+      box-shadow: none;
+    }
+    .btn-outline:hover {
+      background: #E3000F;
+      color: #fff;
+    }
+    .free-badge {
+      display: inline-block;
+      background: #FFD700;
+      color: #0a0a0a;
+      font-weight: 900;
+      padding: 10px 36px;
+      border-radius: 40px;
+      font-size: 24px;
+      margin-top: 24px;
+      letter-spacing: 2px;
+      box-shadow: 0 6px 0 #b38f00;
+      transform: rotate(-2deg);
+      font-family: 'Inter', sans-serif;
+      text-transform: uppercase;
+    }
+    .section {
+      padding: 70px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      background: rgba(20, 20, 20, 0.8);
+      backdrop-filter: blur(2px);
+      margin: 10px 0;
+      border-radius: 24px;
+    }
+    .section:last-of-type {
+      border-bottom: none;
+    }
+    .section h2 {
+      font-family: 'Lobster', cursive;
+      font-size: 44px;
+      text-align: center;
+      color: #fff;
+      margin-bottom: 8px;
+      font-weight: 400;
+      letter-spacing: 2px;
+    }
+    .section h2 .red {
+      background: #E3000F;
+      color: #fff;
+      padding: 0 18px;
+      border-radius: 12px;
+      box-shadow: 0 4px 0 #8a000a;
+      display: inline-block;
+    }
+    .section .subtitle {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 44px;
+      font-size: 18px;
+      color: #aaa;
+      font-weight: 400;
+    }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 28px;
+    }
+    .card {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(4px);
+      border-radius: 20px;
+      padding: 30px 24px;
+      border: 1px solid rgba(255,255,255,0.08);
+      transition: 0.25s;
+      border-top: 8px solid #E3000F;
+      text-align: center;
+    }
+    .card:hover {
+      transform: translateY(-8px);
+      background: rgba(255, 255, 255, 0.1);
+      border-color: #E3000F;
+    }
+    .card img {
+      width: 100%;
+      max-height: 180px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin-bottom: 16px;
+      border: 2px solid #E3000F;
+    }
+    .card h3 {
+      font-family: 'Lobster', cursive;
+      font-size: 28px;
+      margin-bottom: 8px;
+      color: #fff;
+      font-weight: 400;
+    }
+    .card h3 .red {
+      color: #E3000F;
+      background: none;
+      box-shadow: none;
+      padding: 0;
+    }
+    .card ul {
+      list-style: none;
+      padding: 0;
+      margin-top: 12px;
+      color: #ccc;
+      font-weight: 500;
+      text-align: left;
+    }
+    .card ul li {
+      padding: 6px 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .card ul li::before {
+      content: "✦";
+      color: #E3000F;
+      font-weight: 700;
+    }
+    .calculator {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(4px);
+      border-radius: 24px;
+      padding: 40px 34px;
+      max-width: 620px;
+      margin: 0 auto;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-top: 4px solid #E3000F;
+    }
+    .calculator label {
+      display: block;
+      margin-top: 16px;
+      font-weight: 700;
+      color: #ddd;
+    }
+    .calculator input,
+    .calculator select {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid #333;
+      border-radius: 12px;
+      font-size: 16px;
+      margin-top: 4px;
+      background: #1a1a1a;
+      color: #fff;
+      transition: 0.2s;
+    }
+    .calculator input:focus,
+    .calculator select:focus {
+      border-color: #E3000F;
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(227, 0, 15, 0.2);
+    }
+    .calculator .result {
+      margin-top: 24px;
+      padding: 18px;
+      background: rgba(227, 0, 15, 0.1);
+      border-radius: 14px;
+      font-weight: 600;
+      border-left: 6px solid #E3000F;
+      color: #eee;
+    }
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid #333;
+      border-radius: 12px;
+      font-size: 16px;
+      margin-top: 6px;
+      margin-bottom: 16px;
+      background: #1a1a1a;
+      color: #fff;
+      transition: 0.2s;
+    }
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      border-color: #E3000F;
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(227, 0, 15, 0.1);
+    }
+    .contact-form textarea {
+      height: 120px;
+    }
+    .free-cta {
+      text-align: center;
+      margin: 30px 0 10px;
+    }
+    .free-cta .btn-big {
+      background: #FFD700;
+      color: #0a0a0a;
+      padding: 18px 60px;
+      font-size: 28px;
+      font-weight: 900;
+      border-radius: 60px;
+      text-decoration: none;
+      display: inline-block;
+      box-shadow: 0 8px 0 #b38f00;
+      transition: 0.1s;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      border: none;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+    }
+    .free-cta .btn-big:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 0 #b38f00;
+    }
+    .free-cta .btn-big:active {
+      transform: translateY(8px);
+      box-shadow: 0 0 0 #b38f00;
+    }
+    .contact-block {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      margin-top: 30px;
+    }
+    .contact-block a {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 30px;
+      border-radius: 60px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 18px;
+      color: #fff;
+      transition: 0.2s;
+      background: #E3000F;
+      box-shadow: 0 4px 0 #8a000a;
+      font-family: 'Inter', sans-serif;
+    }
+    .contact-block a:hover {
+      transform: translateY(-3px);
+      background: #ff1a2a;
+    }
+    .footer {
+      background: #0a0a0a;
+      color: #888;
+      text-align: center;
+      padding: 30px 0;
+      border-top: 2px solid #E3000F;
+      margin-top: 20px;
+    }
+    .footer .logo-footer {
+      font-family: 'Lobster', cursive;
+      font-size: 36px;
+      color: #fff;
+      text-shadow: 0 0 20px rgba(227, 0, 15, 0.2);
+    }
+    .footer .logo-footer span {
+      background: #E3000F;
+      color: #fff;
+      padding: 0 12px;
+      border-radius: 8px;
+    }
+    .footer a {
+      color: #FFD700;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .footer a:hover {
+      text-decoration: underline;
+    }
+    .footer .free-tag {
+      color: #FFD700;
+      font-weight: 900;
+      font-size: 18px;
+      letter-spacing: 2px;
+    }
+    @media (max-width: 768px) {
+      .header-inner { flex-direction: column; gap: 12px; }
+      .nav a { margin: 0 10px; font-size: 14px; }
+      .hero h1 { font-size: 42px; }
+      .hero p { font-size: 18px; }
+      .btn { padding: 14px 28px; font-size: 16px; }
+      .free-badge { font-size: 18px; padding: 6px 20px; }
+      .section h2 { font-size: 32px; }
+      .free-cta .btn-big { font-size: 20px; padding: 14px 30px; }
+      .calculator { padding: 24px 18px; }
+      .contact-block a { padding: 14px 24px; font-size: 16px; }
+      .logo { font-size: 32px; }
+      .logo span { font-size: 28px; }
+      .logo small { font-size: 10px; }
+      .card img { max-height: 120px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="container header-inner">
+      <div class="logo"><span>R</span>ED<span>F</span>IT <small>🔥 всё бесплатно</small></div>
+      <nav class="nav">
+        <a href="#about">Главная</a>
+        <a href="#beginner">Новичкам</a>
+        <a href="#advanced">Тренирующимся</a>
+        <a href="#calc">Калькулятор</a>
+        <a href="#contact">Контакты</a>
+      </nav>
+    </div>
+  </header>
+  <section class="hero">
+    <div class="container">
+      <h1>Система <span class="highlight">REDFIT</span></h1>
+      <p>От 115 кг к цели — с дисциплиной и результатом.<br>Все консультации <strong style="color:#FFD700;">БЕСПЛАТНЫ</strong>!</p>
+      <div class="free-badge">🔥 ВСЁ БЕСПЛАТНО 🔥</div>
+      <div class="btn-group" style="margin-top:30px;">
+        <a href="#contact" class="btn">Получить план</a>
+        <a href="#beginner" class="btn btn-outline">Узнать больше</a>
+      </div>
+    </div>
+  </section>
+  <section class="section" id="about">
+    <div class="container">
+      <h2>🧭 <span class="red">О проекте</span></h2>
+      <p class="subtitle" style="max-width: 800px; text-align: left; margin-left: auto; margin-right: auto; font-size: 18px; line-height: 1.8; color:#ccc;">
+        <strong style="color:#fff;">Привет! Меня зовут Дмитрий.</strong><br><br>
+        Я — обычный человек, который в 49 лет решил взять своё здоровье в свои руки. Мой вес когда-то перевалил за 115 кг, но я не стал сдаваться. Я системно подошёл к питанию и тренировкам, изучил десятки подходов, проверил их на себе — и нашёл то, что действительно работает.<br><br>
+        Сегодня я помогаю <strong style="color:#fff;">новичкам</strong> сделать первые шаги без страха и ошибок, а <strong style="color:#fff;">тренирующимся</strong> — выйти на новый уровень, скорректировать питание и программу. Всё, что я предлагаю, — абсолютно <strong style="color:#FFD700;">бесплатно</strong>. Без скрытых платежей, без подписок. Просто потому, что я верю: каждый может изменить себя, если получить правильный план и поддержку.
+      </p>
+      <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; max-width: 800px; margin: 0 auto;">
+        <div style="background: rgba(255,255,255,0.05); border-radius: 16px; padding: 16px 24px; flex: 1 1 200px; border-top: 4px solid #E3000F;">
+          <span style="font-size: 32px;">📊</span>
+          <h4 style="font-family: 'Inter', sans-serif; margin-top: 8px; font-weight: 700; color:#fff;">Калькулятор КБЖУ</h4>
+          <p style="font-size: 14px; color: #aaa;">Рассчитай свою норму за 30 секунд.</p>
+        </div>
+        <div style="background: rgba(255,255,255,0.05); border-radius: 16px; padding: 16px 24px; flex: 1 1 200px; border-top: 4px solid #E3000F;">
+          <span style="font-size: 32px;">🥗</span>
+          <h4 style="font-family: 'Inter', sans-serif; margin-top: 8px; font-weight: 700; color:#fff;">Готовые планы питания</h4>
+          <p style="font-size: 14px; color: #aaa;">Для похудения, набора и поддержания.</p>
+        </div>
+        <div style="background: rgba(255,255,255,0.05); border-radius: 16px; padding: 16px 24px; flex: 1 1 200px; border-top: 4px solid #E3000F;">
+          <span style="font-size: 32px;">🏋️</span>
+          <h4 style="font-family: 'Inter', sans-serif; margin-top: 8px; font-weight: 700; color:#fff;">Программы тренировок</h4>
+          <p style="font-size: 14px; color: #aaa;">Full Body, жир, мышцы — всё под твои задачи.</p>
+        </div>
+        <div style="background: rgba(255,255,255,0.05); border-radius: 16px; padding: 16px 24px; flex: 1 1 200px; border-top: 4px solid #E3000F;">
+          <span style="font-size: 32px;">💬</span>
+          <h4 style="font-family: 'Inter', sans-serif; margin-top: 8px; font-weight: 700; color:#fff;">Личные консультации</h4>
+          <p style="font-size: 14px; color: #aaa;">Пиши — отвечу, помогу скорректировать.</p>
+        </div>
+      </div>
+      <p style="text-align:center; margin-top: 30px; font-size: 18px; color: #FFD700; font-weight: 700;">
+        🔥 Моя миссия — сделать фитнес доступным и понятным для каждого. Без воды, без маркетинга, только рабочие схемы.
+      </p>
+    </div>
+  </section>
+  <section class="section" id="beginner">
+    <div class="container">
+      <h2>🔰 <span class="red">Новичкам</span></h2>
+      <p class="subtitle">С чего начать, чтобы не бросить и увидеть первые изменения.</p>
+      <div class="cards">
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=400&q=80" alt="Здоровая еда">
+          <h3>Что такое <span class="red">КБЖУ</span></h3>
+          <ul>
+            <li>Белок — строитель мышц</li>
+            <li>Жиры — энергия и гормоны</li>
+            <li>Углеводы — топливо</li>
+          </ul>
+        </div>
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1547592180-85f173990554?w=400&q=80" alt="Здоровое питание">
+          <h3>Как <span class="red">питаться</span></h3>
+          <ul>
+            <li>Курица, творог, яйца</li>
+            <li>Овощи и крупы</li>
+            <li>Вода — 2–3 литра</li>
+          </ul>
+        </div>
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&q=80" alt="Тренировка">
+          <h3>Первые <span class="red">тренировки</span></h3>
+          <ul>
+            <li>Приседания, отжимания</li>
+            <li>Тяги и жимы</li>
+            <li>Прогрессия: +1 подход</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section" id="advanced">
+    <div class="container">
+      <h2>💪 <span class="red">Тренирующимся</span></h2>
+      <p class="subtitle">Углублённая программа, добавки и работа над отстающими группами.</p>
+      <div class="cards">
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=400&q=80" alt="Тренажёрный зал">
+          <h3>Full Body <span class="red">3×неделя</span></h3>
+          <ul>
+            <li>Жим лёжа 4×8</li>
+            <li>Тяга верхнего блока 4×10</li>
+            <li>Брусья, жим ногами</li>
+          </ul>
+        </div>
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=400&q=80" alt="Добавки">
+          <h3>Проверенные <span class="red">добавки</span></h3>
+          <ul>
+            <li>Креатин 5 г/день</li>
+            <li>Омега-3 1 капс</li>
+            <li>Цитруллин 8 г до тренировки</li>
+          </ul>
+        </div>
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?w=400&q=80" alt="Еда">
+          <h3>Питание <span class="red">под цель</span></h3>
+          <ul>
+            <li>2500 ккал в отдых</li>
+            <li>2750 ккал в тренировочный</li>
+            <li>Белок 220–240 г</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section" id="calc">
+    <div class="container">
+      <h2>📊 <span class="red">Калькулятор калорий</span></h2>
+      <p class="subtitle">Рассчитай свою норму для поддержания, похудения или набора массы.<br><strong style="color:#FFD700;">Бесплатно и без регистрации!</strong></p>
+      <div class="calculator">
+        <form id="calcForm">
+          <label>Пол</label>
+          <select id="gender">
+            <option value="male">Мужской</option>
+            <option value="female">Женский</option>
+          </select>
+          <label>Возраст (лет)</label>
+          <input type="number" id="age" value="30" min="10" max="100">
+          <label>Вес (кг)</label>
+          <input type="number" id="weight" value="80" min="30" max="250">
+          <label>Рост (см)</label>
+          <input type="number" id="height" value="175" min="100" max="250">
+          <label>Цель</label>
+          <select id="goal">
+            <option value="maintain">Поддержание</option>
+            <option value="lose">Похудение</option>
+            <option value="gain">Набор массы</option>
+          </select>
+          <button type="button" class="btn" style="margin-top:24px; width:100%; background:#E3000F; color:#fff; box-shadow:0 6px 0 #8a000a;" onclick="calculate()">Рассчитать</button>
+          <div class="result" id="calcResult">Введи данные и нажми «Рассчитать»</div>
+        </form>
+      </div>
+    </div>
+  </section>
+  <section class="section" id="free" style="background: rgba(227, 0, 15, 0.15); border: 1px solid rgba(227,0,15,0.3); border-radius: 24px; margin: 10px 0; border-bottom: none;">
+    <div class="container" style="text-align:center;">
+      <h2 style="color:#fff; font-family: 'Lobster', cursive; font-size: 48px; font-weight:400;">🔥 Всё <span style="background:#FFD700; color:#0a0a0a; padding:0 20px; border-radius:12px; box-shadow:0 4px 0 #b38f00;">БЕСПЛАТНО</span>!</h2>
+      <p style="font-size:22px; max-width:700px; margin:20px auto 30px; font-weight:500; color:#ccc;">Никаких скрытых платежей. Просто напиши — получишь готовый план питания и тренировок.</p>
+      <div class="free-cta">
+        <a href="#contact" class="btn-big">✉️ Задать вопрос</a>
+      </div>
+    </div>
+  </section>
+  <section class="section" id="contact">
+    <div class="container">
+      <h2>📩 <span class="red">Свяжитесь со мной</span></h2>
+      <p class="subtitle">Напишите письмо — я отвечу быстро и бесплатно.</p>
+      <div class="contact-block">
+        <a href="mailto:redfit1976@rambler.ru">✉️ Написать письмо</a>
+      </div>
+      <p style="text-align:center; margin-top:20px; font-size:14px; color:#888;">Все консультации бесплатны. Пишите в любое время.</p>
+      <div class="calculator" style="border-color:rgba(255,255,255,0.08); margin-top:40px;">
+        <form class="contact-form" action="#" method="post">
+          <label>Ваше имя</label>
+          <input type="text" placeholder="Имя">
+          <label>Телефон или почта</label>
+          <input type="text" placeholder="Контакты">
+          <label>Сообщение</label>
+          <textarea placeholder="Опишите ваш вопрос..."></textarea>
+          <button type="submit" class="btn" style="width:100%; background:#E3000F; color:#fff; box-shadow:0 6px 0 #8a000a;">Отправить БЕСПЛАТНО</button>
+        </form>
+      </div>
+    </div>
+  </section>
+  <footer class="footer">
+    <div class="container">
+      <div class="logo-footer"><span>R</span>ED<span>F</span>IT</div>
+      <p>© 2026 — система, которая работает. <span class="free-tag">Все консультации БЕСПЛАТНЫ!</span></p>
+      <p style="margin-top:10px; font-size:14px;">
+        <a href="mailto:redfit1976@rambler.ru">redfit1976@rambler.ru</a>
+      </p>
+    </div>
+  </footer>
+  <script>
+    function calculate() {
+      const gender = document.getElementById('gender').value;
+      const age = parseInt(document.getElementById('age').value);
+      const weight = parseInt(document.getElementById('weight').value);
+      const height = parseInt(document.getElementById('height').value);
+      const goal = document.getElementById('goal').value;
+      if (!age || !weight || !height) {
+        document.getElementById('calcResult').innerHTML = '⚠️ Заполни все поля!';
+        return;
+      }
+      let bmr;
+      if (gender === 'male') {
+        bmr = 10 * weight + 6.25 * height - 5 * age + 5;
+      } else {
+        bmr = 10 * weight + 6.25 * height - 5 * age - 161;
+      }
+      const tdee = Math.round(bmr * 1.55);
+      let resultText = `Базовый обмен: ${Math.round(bmr)} ккал<br>С учётом активности (средняя): ~${tdee} ккал<br>`;
+      if (goal === 'lose') {
+        resultText += `Рекомендуемая калорийность для похудения: ~${Math.round(tdee - 350)} ккал (дефицит ~350 ккал)`;
+      } else if (goal === 'gain') {
+        resultText += `Рекомендуемая калорийность для набора: ~${Math.round(tdee + 300)} ккал (профицит ~300 ккал)`;
+      } else {
+        resultText += `Для поддержания веса: ~${tdee} ккал`;
+      }
+      document.getElementById('calcResult').innerHTML = resultText;
+    }
+  </script>
+</body>
+</html>
